@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from "axios";
+// import axios from "axios";
 import CurrentState from "./CurrentState";
 import CurrentTemperature from "./CurrentTemperature";
 import MaxAndMin from "./MaxAndMin";
