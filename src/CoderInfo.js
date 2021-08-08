@@ -7,7 +7,7 @@ export default function CoderInfo() {
     <small className="CoderInfo">
       Coded by Anna Knol, open-source on{" "}
       <a
-        href="https://github.com/AnnaKnol/wonderful-weather-app"
+        href="https://github.com/AnnaKnol/weather-react"
         target="_blank"
         rel="noreferrer"
       >
