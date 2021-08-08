@@ -12,6 +12,14 @@ export default function CoderInfo() {
         rel="noreferrer"
       >
         Github
+      </a>{" "}
+      and hosted on{" "}
+      <a
+        href="https://nervous-spence-f7d166.netlify.app/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Netlify
       </a>
     </small>
   );
