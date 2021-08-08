@@ -81,3 +81,29 @@
   margin: 50px auto;
   max-width: 800px;
 }
+
+.App input[type="search"] {
+  border: 2px solid #146ec5;
+  border-radius: 2px;
+  padding-left: 4px;
+}
+
+.App input[type="search"]:focus {
+  border: 2px solid #42a5f5;
+}
+
+.App #cur_loc_btn {
+  background-color: rgba(66, 165, 245, 0.2);
+  border: 2px solid #146ec5;
+  border-radius: 2px;
+  color: #42a5f5;
+}
+
+.App #cur_loc_btn:hover {
+  border-color: #1e90e8;
+  color: #146ec5;
+}
+
+.Search .current-location {
+  padding: 0;
+}

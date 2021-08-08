@@ -12,14 +12,6 @@ export default function CoderInfo() {
         rel="noreferrer"
       >
         Github
-      </a>{" "}
-      and hosted on{" "}
-      <a
-        href="https://priceless-bose-84ce7a.netlify.app"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Netlify
       </a>
     </small>
   );

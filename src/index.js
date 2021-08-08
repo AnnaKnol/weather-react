@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Search from "./Search";
+import axios from "axios";
 import CurrentState from "./CurrentState";
 import CurrentTemperature from "./CurrentTemperature";
 import MaxAndMin from "./MaxAndMin";
@@ -17,8 +17,27 @@ function App() {
         <div className="weather-app-wrapper">
           <div className="weather-app">
             <div className="row">
-              <div className="col-5">
-                <Search />
+              <div className="col-3">
+                <form id="search_form">
+                  <input
+                    type="search"
+                    id="type_city"
+                    className="form-control"
+                    placeholder="Type city..."
+                    autoComplete="off"
+                    autoFocus="on"
+                  />
+                </form>
+              </div>
+              <div className="col-2 current-location">
+                <form id="current_location_form">
+                  <input
+                    type="submit"
+                    id="cur_loc_btn"
+                    className="btn btn-outline"
+                    value="current location"
+                  />
+                </form>
               </div>
               <div className="col-7">
                 <h1>Brussels</h1>
@@ -32,7 +51,7 @@ function App() {
                 <CurrentState />
               </div>
               <div className="col-4 current">
-                <CurrentTemperature />
+                <CurrentTemperature temperature={11} />
               </div>
               <div className="col-1 max-and-min">
                 <MaxAndMin />
