@@ -1,0 +1,14 @@
+.CurrentState .current-icon img {
+  margin: -5px auto -15px;
+}
+
+.CurrentState ul {
+  text-align: center;
+}
+
+.CurrentState .description {
+  font-size: 9px;
+  margin: 0 auto;
+  opacity: 60%;
+  text-align: center;
+}
