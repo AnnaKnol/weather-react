@@ -12,7 +12,7 @@ export default function CurrentState() {
             alt="current-weather-icon"
           />
         </li>
-        <li className="description">A little rain</li>
+        <li className="description">Rain falling</li>
       </ul>
     </div>
   );
