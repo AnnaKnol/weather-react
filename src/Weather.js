@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
+import FormattedTime from "./FormattedTime";
 import CurrentState from "./CurrentState";
 import CurrentTemperature from "./CurrentTemperature";
 import MaxAndMin from "./MaxAndMin";
@@ -14,6 +15,7 @@ export default function Weather(props) {
   const [precipitation, setPrecipitation] = useState(false);
 
   function fetchWeatherData(response) {
+    console.log(response.data);
     if (response.data.rain) {
       setPrecipitation(response.data.rain["1h"]);
     }
@@ -21,7 +23,7 @@ export default function Weather(props) {
     setWeatherData({
       ready: true,
       cityName: response.data.name,
-      updateTime: "Friday 12:50",
+      date: new Date(response.data.dt * 1000),
       icon: response.data.weather[0].icon,
       description: response.data.weather[0].description,
       temperature: Math.round(response.data.main.temp),
@@ -45,7 +47,6 @@ export default function Weather(props) {
                 className="form-control"
                 placeholder="Type city..."
                 autoComplete="off"
-                autoFocus="on"
               />
             </form>
           </div>
@@ -64,7 +65,7 @@ export default function Weather(props) {
           </div>
         </div>
         <small className="updated">Last updated:</small>
-        <h5>{weatherData.updateTime}</h5>
+        <FormattedTime data={weatherData.date} />
         <br />
         <div className="row">
           <div className="col current-state">
