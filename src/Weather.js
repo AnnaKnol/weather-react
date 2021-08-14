@@ -11,6 +11,7 @@ import Tomorrow from "./Tomorrow";
 import "./Weather.css";
 
 export default function Weather(props) {
+  const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [precipitation, setPrecipitation] = useState(false);
 
@@ -35,23 +36,52 @@ export default function Weather(props) {
     });
   }
 
+  function search() {
+    const apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
+    let units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
+    axios.get(apiUrl).then(fetchWeatherData);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
+  function determinePosition(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    const apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
+    let units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(fetchWeatherData);
+  }
+  function getCurrentLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(determinePosition);
+  }
+
   if (weatherData.ready) {
     return (
       <div className="Weather">
         <div className="row">
           <div className="col-3">
-            <form id="search_form">
+            <form onSubmit={handleSubmit}>
               <input
                 type="search"
-                id="type_city"
                 className="form-control"
                 placeholder="Type city..."
                 autoComplete="off"
+                onChange={handleCityChange}
               />
             </form>
           </div>
           <div className="col-2 current-location">
-            <form id="current_location_form">
+            <form onSubmit={getCurrentLocation}>
               <input
                 type="submit"
                 id="cur_loc_btn"
@@ -98,11 +128,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
-    let units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=${units}`;
-
-    axios.get(apiUrl).then(fetchWeatherData);
+    search();
 
     return (
       <div className="Weather">
