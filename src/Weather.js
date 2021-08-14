@@ -3,7 +3,6 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import FormattedTime from "./FormattedTime";
 import CurrentState from "./CurrentState";
-import CurrentTemperature from "./CurrentTemperature";
 import MaxAndMin from "./MaxAndMin";
 import CurrentExtra from "./CurrentExtra";
 import Tomorrow from "./Tomorrow";
@@ -11,12 +10,19 @@ import Tomorrow from "./Tomorrow";
 import "./Weather.css";
 
 export default function Weather(props) {
+  const apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
+
   const [city, setCity] = useState(props.defaultCity);
+  const [unit, setUnit] = useState("metric");
+  const [APIUrl, setAPIUrl] = useState(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
+  );
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [precipitation, setPrecipitation] = useState(false);
 
   function fetchWeatherData(response) {
-    console.log(response.data);
+    console.log(response.data.name);
+    console.log(city);
     if (response.data.rain) {
       setPrecipitation(response.data.rain["1h"]);
     }
@@ -37,15 +43,14 @@ export default function Weather(props) {
   }
 
   function search() {
-    const apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
-    let units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
-    axios.get(apiUrl).then(fetchWeatherData);
+    axios.get(APIUrl).then(fetchWeatherData);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    setAPIUrl(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
+    );
     search();
   }
   function handleCityChange(event) {
@@ -55,14 +60,28 @@ export default function Weather(props) {
   function determinePosition(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    const apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
-    let units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(fetchWeatherData);
+    setAPIUrl(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`
+    );
+    search();
   }
   function getCurrentLocation(event) {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(determinePosition);
+  }
+
+  function showCelsius(event) {
+    event.preventDefault();
+    setUnit("metric");
+    search();
+  }
+  function showFahrenheit(event) {
+    event.preventDefault();
+    setUnit("imperial");
+    setAPIUrl(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
+    );
+    search();
   }
 
   if (weatherData.ready) {
@@ -73,6 +92,7 @@ export default function Weather(props) {
             <form onSubmit={handleSubmit}>
               <input
                 type="search"
+                id="searc_form"
                 className="form-control"
                 placeholder="Type city..."
                 autoComplete="off"
@@ -105,7 +125,18 @@ export default function Weather(props) {
             />
           </div>
           <div className="col-4 current">
-            <CurrentTemperature temperature={weatherData.temperature} />
+            <span className="current-temperature">
+              {weatherData.temperature}
+            </span>
+            <span className="temp-unit">
+              <a href="/" onClick={showCelsius}>
+                °C
+              </a>{" "}
+              |{" "}
+              <a href="/" onClick={showFahrenheit}>
+                °F
+              </a>
+            </span>
           </div>
           <div className="col-1 max-and-min">
             <MaxAndMin

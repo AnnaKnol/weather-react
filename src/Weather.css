@@ -99,3 +99,17 @@
 .Weather .current-location {
   padding: 0;
 }
+
+.Weather .current-temperature {
+  color: #146ec5;
+  font-size: 120px;
+  line-height: 91px;
+  margin-right: 3px;
+  padding: 0;
+  text-align: center;
+}
+
+.Weather .temp-unit {
+  color: #146ec5;
+  font-size: 25px;
+}
