@@ -26,7 +26,6 @@ export default function Weather(props) {
   useEffect(
     function () {
       function fetchWeatherData(response) {
-        console.log(response.data);
         setWeatherData({
           ready: true,
           cityName: response.data.name,
