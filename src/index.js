@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Weather from "./Weather";
@@ -7,9 +7,11 @@ import CoderInfo from "./CoderInfo";
 import "./App.css";
 
 function App() {
+  const [sunStatus, setSunStatus] = useState("day");
+
   return (
     <div className="App">
-      <div className="container">
+      <div className={`container ${sunStatus}`}>
         <div className="weather-app-wrapper">
           <Weather defaultCity="Brussels" />
           <CoderInfo />

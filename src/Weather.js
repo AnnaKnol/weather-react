@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import FormattedTime from "./FormattedTime";
@@ -18,40 +18,52 @@ export default function Weather(props) {
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
   );
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [precipitation, setPrecipitation] = useState(false);
+  const [precipitation, setPrecipitation] = useState("");
+  const [wind, setWind] = useState("");
+  const [celsiusState, setCelsiusState] = useState("active");
+  const [fahrenheitState, setFahrenheitState] = useState("");
 
-  function fetchWeatherData(response) {
-    console.log(response.data.name);
-    console.log(city);
-    if (response.data.rain) {
-      setPrecipitation(response.data.rain["1h"]);
-    }
+  useEffect(
+    function () {
+      function fetchWeatherData(response) {
+        console.log(response.data);
+        setWeatherData({
+          ready: true,
+          cityName: response.data.name,
+          date: new Date(response.data.dt * 1000),
+          icon: response.data.weather[0].icon,
+          description: response.data.weather[0].description,
+          temperature: Math.round(response.data.main.temp),
+          minTemperature: Math.round(response.data.main.temp_min),
+          maxTemperature: Math.round(response.data.main.temp_max),
+          humidity: Math.round(response.data.main.humidity),
+          feelingTemperature: Math.round(response.data.main.feels_like),
+        });
 
-    setWeatherData({
-      ready: true,
-      cityName: response.data.name,
-      date: new Date(response.data.dt * 1000),
-      icon: response.data.weather[0].icon,
-      description: response.data.weather[0].description,
-      temperature: Math.round(response.data.main.temp),
-      minTemperature: Math.round(response.data.main.temp_min),
-      maxTemperature: Math.round(response.data.main.temp_max),
-      humidity: Math.round(response.data.main.humidity),
-      feelingTemperature: Math.round(response.data.main.feels_like),
-      wind: Math.round(response.data.wind.speed * 3.6),
-    });
-  }
+        if (response.data.rain) {
+          setPrecipitation(
+            `Precipitation: ${Math.round(response.data.rain["1h"])} mm`
+          );
+        }
+        if (response.config.url.slice(-8) === "imperial") {
+          setWind(`${Math.round(response.data.wind.speed)} mph`);
+        } else {
+          setWind(`${Math.round(response.data.wind.speed * 3.6)} km/h`);
+        }
 
-  function search() {
-    axios.get(APIUrl).then(fetchWeatherData);
-  }
+        setCity(response.data.name);
+      }
+
+      return axios.get(APIUrl).then(fetchWeatherData);
+    },
+    [APIUrl]
+  );
 
   function handleSubmit(event) {
     event.preventDefault();
     setAPIUrl(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
     );
-    search();
   }
   function handleCityChange(event) {
     setCity(event.target.value);
@@ -63,7 +75,6 @@ export default function Weather(props) {
     setAPIUrl(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`
     );
-    search();
   }
   function getCurrentLocation(event) {
     event.preventDefault();
@@ -73,7 +84,12 @@ export default function Weather(props) {
   function showCelsius(event) {
     event.preventDefault();
     setUnit("metric");
-    search();
+    setAPIUrl(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
+    );
+
+    setCelsiusState("active");
+    setFahrenheitState("");
   }
   function showFahrenheit(event) {
     event.preventDefault();
@@ -81,7 +97,9 @@ export default function Weather(props) {
     setAPIUrl(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
     );
-    search();
+
+    setCelsiusState("");
+    setFahrenheitState("active");
   }
 
   if (weatherData.ready) {
@@ -129,11 +147,11 @@ export default function Weather(props) {
               {weatherData.temperature}
             </span>
             <span className="temp-unit">
-              <a href="/" onClick={showCelsius}>
+              <a href="/" className={celsiusState} onClick={showCelsius}>
                 °C
               </a>{" "}
               |{" "}
-              <a href="/" onClick={showFahrenheit}>
+              <a href="/" className={fahrenheitState} onClick={showFahrenheit}>
                 °F
               </a>
             </span>
@@ -148,7 +166,7 @@ export default function Weather(props) {
             <CurrentExtra
               humidity={weatherData.humidity}
               feelingTemperature={weatherData.feelingTemperature}
-              wind={weatherData.wind}
+              wind={wind}
               precipitation={precipitation}
             />
           </div>
@@ -159,8 +177,6 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    search();
-
     return (
       <div className="Weather">
         <div className="row">
