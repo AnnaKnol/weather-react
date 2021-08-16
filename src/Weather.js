@@ -32,11 +32,12 @@ export default function Weather(props) {
           date: new Date(response.data.dt * 1000),
           icon: response.data.weather[0].icon,
           description: response.data.weather[0].description,
-          temperature: Math.round(response.data.main.temp),
-          minTemperature: Math.round(response.data.main.temp_min),
-          maxTemperature: Math.round(response.data.main.temp_max),
+          temperature: response.data.main.temp,
+          minTemperature: response.data.main.temp_min,
+          maxTemperature: response.data.main.temp_max,
           humidity: Math.round(response.data.main.humidity),
-          feelingTemperature: Math.round(response.data.main.feels_like),
+          feelingTemperature: response.data.main.feels_like,
+          wind: response.data.wind.speed,
         });
 
         if (response.data.rain) {
@@ -60,8 +61,9 @@ export default function Weather(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    resetToCelsius();
     setAPIUrl(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
     );
   }
   function handleCityChange(event) {
@@ -69,10 +71,11 @@ export default function Weather(props) {
   }
 
   function determinePosition(position) {
+    resetToCelsius();
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
     setAPIUrl(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
     );
   }
   function getCurrentLocation(event) {
@@ -80,23 +83,21 @@ export default function Weather(props) {
     navigator.geolocation.getCurrentPosition(determinePosition);
   }
 
+  function resetToCelsius() {
+    setUnit("metric");
+    setCelsiusState("active");
+    setFahrenheitState("");
+  }
+
   function showCelsius(event) {
     event.preventDefault();
     setUnit("metric");
-    setAPIUrl(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
-    );
-
     setCelsiusState("active");
     setFahrenheitState("");
   }
   function showFahrenheit(event) {
     event.preventDefault();
     setUnit("imperial");
-    setAPIUrl(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
-    );
-
     setCelsiusState("");
     setFahrenheitState("active");
   }
@@ -143,7 +144,9 @@ export default function Weather(props) {
           </div>
           <div className="col-4 current">
             <span className="current-temperature">
-              {weatherData.temperature}
+              {unit === "metric"
+                ? Math.round(weatherData.temperature)
+                : Math.round(weatherData.temperature * (9 / 5) + 32)}
             </span>
             <span className="temp-unit">
               <a href="/" className={celsiusState} onClick={showCelsius}>
@@ -157,15 +160,31 @@ export default function Weather(props) {
           </div>
           <div className="col-1 max-and-min">
             <MaxAndMin
-              minTemperature={weatherData.minTemperature}
-              maxTemperature={weatherData.maxTemperature}
+              minTemperature={
+                unit === "metric"
+                  ? Math.round(weatherData.minTemperature)
+                  : Math.round((weatherData.minTemperature * 9) / 5 + 32)
+              }
+              maxTemperature={
+                unit === "metric"
+                  ? Math.round(weatherData.maxTemperature)
+                  : Math.round((weatherData.maxTemperature * 9) / 5 + 32)
+              }
             />
           </div>
           <div className="col current-extra">
             <CurrentExtra
               humidity={weatherData.humidity}
-              feelingTemperature={weatherData.feelingTemperature}
-              wind={wind}
+              feelingTemperature={
+                unit === "metric"
+                  ? Math.round(weatherData.feelingTemperature)
+                  : Math.round((weatherData.feelingTemperature * 9) / 5 + 32)
+              }
+              wind={
+                unit === "metric"
+                  ? `${Math.round(weatherData.wind * 3.6)} km/h`
+                  : `${Math.round(weatherData.wind)} mph`
+              }
               precipitation={precipitation}
             />
           </div>
