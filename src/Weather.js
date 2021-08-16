@@ -19,7 +19,6 @@ export default function Weather(props) {
   );
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [precipitation, setPrecipitation] = useState("");
-  const [wind, setWind] = useState("");
   const [celsiusState, setCelsiusState] = useState("active");
   const [fahrenheitState, setFahrenheitState] = useState("");
 
@@ -44,11 +43,6 @@ export default function Weather(props) {
           setPrecipitation(
             `Precipitation: ${Math.round(response.data.rain["1h"])} mm`
           );
-        }
-        if (response.config.url.slice(-8) === "imperial") {
-          setWind(`${Math.round(response.data.wind.speed)} mph`);
-        } else {
-          setWind(`${Math.round(response.data.wind.speed * 3.6)} km/h`);
         }
 
         setCity(response.data.name);
