@@ -43,6 +43,8 @@ export default function Weather(props) {
           setPrecipitation(
             `Precipitation: ${Math.round(response.data.rain["1h"])} mm`
           );
+        } else {
+          setPrecipitation("");
         }
 
         setCity(response.data.name);
