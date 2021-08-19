@@ -28,6 +28,11 @@
   text-align: right;
 }
 
+.Weather hr {
+  border-top: 3px solid rgb(66, 165, 245);
+  margin-top: 25px;
+}
+
 .Weather ul {
   list-style: none;
   padding: 0;

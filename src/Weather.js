@@ -6,6 +6,7 @@ import CurrentState from "./CurrentState";
 import MaxAndMin from "./MaxAndMin";
 import CurrentExtra from "./CurrentExtra";
 import Tomorrow from "./Tomorrow";
+import WeatherForecast from "./WeatherForecast";
 
 import "./Weather.css";
 
@@ -197,6 +198,8 @@ export default function Weather(props) {
             <Tomorrow />
           </div>
         </div>
+        <hr />
+        <WeatherForecast />
       </div>
     );
   } else {

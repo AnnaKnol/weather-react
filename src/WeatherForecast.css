@@ -1,0 +1,35 @@
+.WeatherForecast {
+  text-align: center;
+}
+
+.WeatherForecast .WeatherForecast-icon {
+  margin: -38px -20px -17px -15px;
+}
+
+.WeatherForecast .WeatherForecast-icon-max {
+  color: #42a5f5;
+}
+
+.WeatherForecast .WeatherForecast-max {
+  font-size: 42px;
+  margin-top: -4px;
+  padding-left: 9px;
+}
+
+.WeatherForecast .WeatherForecast-min {
+  margin-top: -6px;
+  opacity: 45%;
+}
+
+.WeatherForecast .col {
+  border-radius: 20px;
+  transition: all 150ms ease-in-out;
+}
+
+.WeatherForecast .col:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+.WeatherForecast .WeatherForecast-date {
+  color: #5a6275;
+}
