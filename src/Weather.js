@@ -50,7 +50,14 @@ export default function Weather(props) {
         setCity(response.data.name);
       }
 
-      return axios.get(APIUrl).then(fetchWeatherData);
+      return axios
+        .get(APIUrl)
+        .then(fetchWeatherData)
+        .catch(function (error) {
+          alert(
+            "Please, try typing it correctly or use another place in the area 📍 👍"
+          );
+        });
     },
     [APIUrl]
   );
@@ -61,6 +68,8 @@ export default function Weather(props) {
     setAPIUrl(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
     );
+    let searchFormElement = document.querySelector("#search_form");
+    searchFormElement.value = "";
   }
   function handleCityChange(event) {
     setCity(event.target.value);
@@ -106,7 +115,7 @@ export default function Weather(props) {
             <form onSubmit={handleSubmit}>
               <input
                 type="search"
-                id="searc_form"
+                id="search_form"
                 className="form-control"
                 placeholder="Type city..."
                 autoComplete="off"
