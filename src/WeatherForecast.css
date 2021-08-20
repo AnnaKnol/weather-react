@@ -21,12 +21,13 @@
   opacity: 45%;
 }
 
-.WeatherForecast .col {
+.WeatherForecast .WeatherForecastDay {
   border-radius: 20px;
+  margin-bottom: 20px;
   transition: all 150ms ease-in-out;
 }
 
-.WeatherForecast .col:hover {
+.WeatherForecast .WeatherForecastDay:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 

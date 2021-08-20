@@ -2,7 +2,7 @@ import React from "react";
 
 export default function WeatherForecastDay() {
   return (
-    <div className="col WeatherForecastDay">
+    <div className="col-lg WeatherForecastDay">
       <div className="WeatherForecast-date">
         <h4>Fri</h4>
       </div>

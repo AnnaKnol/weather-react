@@ -143,3 +143,28 @@
   opacity: 1;
   text-decoration: none;
 }
+
+@media (max-width: 991px) {
+  .Weather .tomorrow {
+    border-left: none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    transition: all 150ms ease-in-out;
+  }
+
+  .Weather .tomorrow:hover {
+    background: rgba(66, 165, 245, 0.2);
+  }
+}
+
+@media (max-width: 767px) {
+  .Weather h1 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
+  .Weather .current-extra {
+    margin-top: 15px;
+    margin-left: 0;
+  }
+}

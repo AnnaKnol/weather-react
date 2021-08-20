@@ -112,7 +112,7 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         <div className="row">
-          <div className="col-3">
+          <div className="col-8 col-md-3">
             <form onSubmit={handleSubmit}>
               <input
                 type="search"
@@ -124,7 +124,7 @@ export default function Weather(props) {
               />
             </form>
           </div>
-          <div className="col-2 current-location">
+          <div className="col-4 col-md-2 current-location">
             <form onSubmit={getCurrentLocation}>
               <input
                 type="submit"
@@ -134,7 +134,7 @@ export default function Weather(props) {
               />
             </form>
           </div>
-          <div className="col-7">
+          <div className="col-md-7">
             <h1>{weatherData.cityName}</h1>
           </div>
         </div>
@@ -142,13 +142,13 @@ export default function Weather(props) {
         <FormattedTime data={weatherData.date} />
         <br />
         <div className="row">
-          <div className="col current-state">
+          <div className="col-7 col-md-5 col-lg current-state">
             <CurrentState
               icon={weatherData.icon}
               description={weatherData.description}
             />
           </div>
-          <div className="col-4 current">
+          <div className="col-7 col-md-5 col-lg-4 current">
             <span className="current-temperature">
               {unit === "metric"
                 ? Math.round(weatherData.temperature)
@@ -178,7 +178,7 @@ export default function Weather(props) {
               }
             />
           </div>
-          <div className="col current-extra">
+          <div className="col-12 col-md-4 col-lg current-extra">
             <CurrentExtra
               humidity={weatherData.humidity}
               feelingTemperature={
@@ -194,11 +194,12 @@ export default function Weather(props) {
               precipitation={precipitation}
             />
           </div>
-          <div className="col-2 tomorrow">
+          <hr className="d-block d-lg-none" />
+          <div className="col col-lg-2 tomorrow">
             <Tomorrow />
           </div>
         </div>
-        <hr />
+        <hr className="d-none d-lg-block" />
         <WeatherForecast />
       </div>
     );

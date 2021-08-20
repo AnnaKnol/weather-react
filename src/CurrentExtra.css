@@ -1,3 +1,9 @@
 .CurrentExtra ul {
   text-align: right;
 }
+
+@media (max-width: 767px) {
+  .CurrentExtra ul {
+    text-align: center;
+  }
+}
