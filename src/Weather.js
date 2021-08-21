@@ -29,6 +29,7 @@ export default function Weather(props) {
         setWeatherData({
           ready: true,
           cityName: response.data.name,
+          coordinates: response.data.coord,
           date: new Date(response.data.dt * 1000),
           icon: response.data.weather[0].icon,
           description: response.data.weather[0].description,
@@ -196,11 +197,11 @@ export default function Weather(props) {
           </div>
           <hr className="d-block d-lg-none" />
           <div className="col col-lg-2 tomorrow">
-            <Tomorrow />
+            <Tomorrow coordinates={weatherData.coordinates} unit={unit} />
           </div>
         </div>
         <hr className="d-none d-lg-block" />
-        <WeatherForecast />
+        <WeatherForecast coordinates={weatherData.coordinates} unit={unit} />
       </div>
     );
   } else {
