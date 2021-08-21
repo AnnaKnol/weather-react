@@ -34,7 +34,7 @@ export default function WeatherForecastDay(props) {
       <div className="WeatherForecast-icon-max">
         <img
           src={`https://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`}
-          alt="in-2-days-weather-icon"
+          alt={`in-${props.index}-days-weather-icon`}
           className="WeatherForecast-icon"
           width="90"
         />

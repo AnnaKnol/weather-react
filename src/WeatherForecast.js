@@ -17,7 +17,19 @@ export default function WeatherForecast(props) {
     return (
       <div className="WeatherForecast">
         <div className="row">
-          <WeatherForecastDay data={forecast[2]} unit={props.unit} />
+          {forecast.map(function (dailyForecast, index) {
+            if (index > 1 && index < 7) {
+              return (
+                <WeatherForecastDay
+                  data={dailyForecast}
+                  index={index}
+                  unit={props.unit}
+                />
+              );
+            } else {
+              return null;
+            }
+          })}
         </div>
       </div>
     );
