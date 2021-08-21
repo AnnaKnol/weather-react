@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "./Tomorrow.css";
@@ -6,6 +6,10 @@ import "./Tomorrow.css";
 export default function Tomorrow(props) {
   let [loaded, setLoaded] = useState(false);
   let [forecast, setForecast] = useState(null);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
 
   function fetchForecast(response) {
     setForecast(response.data.daily[1]);
