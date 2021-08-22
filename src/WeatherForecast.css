@@ -3,7 +3,7 @@
 }
 
 .WeatherForecast .WeatherForecast-icon {
-  margin: -38px -20px -17px -15px;
+  margin: -38px -15px -17px -38px;
 }
 
 .WeatherForecast .WeatherForecast-icon-max {
@@ -13,7 +13,7 @@
 .WeatherForecast .WeatherForecast-max {
   font-size: 42px;
   margin-top: -4px;
-  padding-left: 9px;
+  margin-right: -20px;
 }
 
 .WeatherForecast .WeatherForecast-min {
