@@ -26,6 +26,7 @@ export default function WeatherForecast(props) {
               return (
                 <WeatherForecastDay
                   data={dailyForecast}
+                  key={index}
                   index={index}
                   unit={props.unit}
                 />

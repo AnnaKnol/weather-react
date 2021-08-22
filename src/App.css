@@ -1,12 +1,16 @@
-/* .App body.day {
-  background-color: #f2f9ff;
-}
-
-.App body.night {
-  background-color: rgba(73, 72, 74, 0.9);
-} */
-
 .App .weather-app-wrapper {
   margin: 50px auto;
   max-width: 800px;
+}
+
+@media (max-width: 991px) {
+  .App .weather-app-wrapper {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 575px) {
+  .App .weather-app-wrapper {
+    margin-top: 10px;
+  }
 }
