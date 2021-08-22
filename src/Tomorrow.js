@@ -35,6 +35,16 @@ export default function Tomorrow(props) {
     return `${temperature}°`;
   }
 
+  function load() {
+    let apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
+    let lat = props.coordinates.lat;
+    let lon = props.coordinates.lon;
+    let units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+
+    axios.get(apiUrl).then(fetchForecast);
+  }
+
   if (loaded) {
     return (
       <div className="Tomorrow">
@@ -56,13 +66,7 @@ export default function Tomorrow(props) {
       </div>
     );
   } else {
-    let apiKey = "39b9fa38fab84a614d2c18fbd5c314dd";
-    let lat = props.coordinates.lat;
-    let lon = props.coordinates.lon;
-    let units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-
-    axios.get(apiUrl).then(fetchForecast);
+    load();
 
     return null;
   }
