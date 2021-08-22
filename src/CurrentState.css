@@ -12,3 +12,9 @@
   opacity: 0.6;
   text-align: center;
 }
+
+@media (max-width: 387px) {
+  .CurrentState {
+    margin-left: 10px;
+  }
+}

@@ -148,7 +148,7 @@
   .Weather .tomorrow {
     border-left: none;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin: 0 0 20px;
     transition: all 150ms ease-in-out;
   }
 
@@ -166,5 +166,52 @@
   .Weather .current-extra {
     margin-top: 15px;
     margin-left: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .Weather .current-location {
+    padding: 10px 12px 0;
+  }
+
+  .Weather #cur_loc_btn {
+    width: 100%;
+  }
+
+  .Weather .current-temperature {
+    font-size: 100px;
+  }
+
+  .Weather .max-and-min {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 445px) {
+  .Weather h1 {
+    font-size: 40px;
+  }
+
+  .Weather .current-temperature {
+    font-size: 80px;
+  }
+
+  .Weather .temp-unit {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 387px) {
+  .Weather h1 {
+    font-size: 35px;
+  }
+
+  .Weather .current-temperature {
+    font-size: 60px;
+  }
+
+  .Weather .current {
+    text-align: center;
   }
 }

@@ -113,7 +113,7 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         <div className="row">
-          <div className="col-8 col-md-3">
+          <div className="col-sm-8 col-md-3">
             <form onSubmit={handleSubmit}>
               <input
                 type="search"
@@ -125,7 +125,7 @@ export default function Weather(props) {
               />
             </form>
           </div>
-          <div className="col-4 col-md-2 current-location">
+          <div className="col-12 col-sm-4 col-md-2 current-location">
             <form onSubmit={getCurrentLocation}>
               <input
                 type="submit"
@@ -143,13 +143,13 @@ export default function Weather(props) {
         <FormattedTime data={weatherData.date} />
         <br />
         <div className="row">
-          <div className="col-7 col-md-5 col-lg current-state">
+          <div className="col-7 col-sm-7 col-md-5 col-lg current-state">
             <CurrentState
               icon={weatherData.icon}
               description={weatherData.description}
             />
           </div>
-          <div className="col-7 col-md-5 col-lg-4 current">
+          <div className="col-8 col-sm-7 col-md-5 col-lg-4 current">
             <span className="current-temperature">
               {unit === "metric"
                 ? Math.round(weatherData.temperature)
@@ -165,7 +165,7 @@ export default function Weather(props) {
               </a>
             </span>
           </div>
-          <div className="col-1 max-and-min">
+          <div className="col-12 col-sm-1 max-and-min">
             <MaxAndMin
               minTemperature={
                 unit === "metric"
