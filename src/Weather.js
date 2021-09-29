@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
+import Form from "./Form";
 import FormattedTime from "./FormattedTime";
 import CurrentState from "./CurrentState";
 import MaxAndMin from "./MaxAndMin";
@@ -113,27 +114,12 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         <div className="row">
-          <div className="col-sm-8 col-md-3">
-            <form onSubmit={handleSubmit}>
-              <input
-                type="search"
-                id="search_form"
-                className="form-control"
-                placeholder="Type city..."
-                autoComplete="off"
-                onChange={handleCityChange}
-              />
-            </form>
-          </div>
-          <div className="col-12 col-sm-4 col-md-2 current-location">
-            <form onSubmit={getCurrentLocation}>
-              <input
-                type="submit"
-                id="cur_loc_btn"
-                className="btn btn-outline"
-                value="current location"
-              />
-            </form>
+          <div className="col-md-5">
+            <Form
+              handleSubmit={handleSubmit}
+              handleCityChange={handleCityChange}
+              getCurrentLocation={getCurrentLocation}
+            />
           </div>
           <div className="col-md-7">
             <h1>{weatherData.cityName}</h1>
@@ -208,28 +194,14 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         <div className="row">
-          <div className="col-3">
-            <form id="search_form">
-              <input
-                type="search"
-                id="type_city"
-                className="form-control"
-                placeholder="Type city..."
-                autoComplete="off"
-              />
-            </form>
+          <div className="col-md-5">
+            <Form
+              handleSubmit={handleSubmit}
+              handleCityChange={handleCityChange}
+              getCurrentLocation={getCurrentLocation}
+            />
           </div>
-          <div className="col-2 current-location">
-            <form id="current_location_form">
-              <input
-                type="submit"
-                id="cur_loc_btn"
-                className="btn btn-outline"
-                value="current location"
-              />
-            </form>
-          </div>
-          <div className="col-7">
+          <div className="col-md-7">
             <h1>Brussels</h1>
           </div>
         </div>
