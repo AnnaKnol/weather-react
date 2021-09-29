@@ -16,6 +16,8 @@
   color: rgba(0, 0, 0, 0.45);
   cursor: default;
   font-size: 25px;
+  position: relative;
+  top: 27px;
 }
 
 .TempMaxAndMin a {
@@ -41,24 +43,52 @@
     font-size: 100px;
   }
 
-  .TempMaxAndMin .max-and-min {
-    margin-top: 20px;
-    text-align: center;
+  .TempMaxAndMin .temp-unit {
+    top: 25px;
   }
 }
 
-@media (max-width: 445px) {
+@media (max-width: 454px) {
   .TempMaxAndMin .current-temperature {
     font-size: 80px;
   }
 
   .TempMaxAndMin .temp-unit {
     font-size: 20px;
+    top: 21px;
+    left: -2px;
   }
 }
 
-@media (max-width: 387px) {
+@media (max-width: 400px) {
   .TempMaxAndMin .current-temperature {
     font-size: 60px;
+  }
+
+  .TempMaxAndMin .max-and-min {
+    position: relative;
+    top: 14px;
+    font-size: 18px;
+  }
+
+  .TempMaxAndMin .temp-unit {
+    font-size: 15px;
+    top: 19px;
+  }
+}
+
+@media (max-width: 346px) {
+  .TempMaxAndMin .current-temperature {
+    position: relative;
+    left: 15px;
+  }
+
+  .TempMaxAndMin .max-and-min {
+    font-size: 16px;
+  }
+
+  .TempMaxAndMin .temp-unit {
+    font-size: 12px;
+    top: 25px;
   }
 }

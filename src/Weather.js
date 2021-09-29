@@ -129,11 +129,11 @@ export default function Weather(props) {
               showFahrenheit={showFahrenheit}
             />
           </div>
-          <div className="col-12 col-md-4 col-lg current-extra">
+          <div className="col-12 col-md-4 col-lg-3 current-extra">
             <CurrentExtra data={weatherData} unit={unit} />
           </div>
           <hr className="d-block d-lg-none" />
-          <div className="col col-lg-2 tomorrow">
+          <div className="col col-lg-3 tomorrow">
             <Tomorrow coordinates={weatherData.coordinates} unit={unit} />
           </div>
         </div>

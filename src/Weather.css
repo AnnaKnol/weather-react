@@ -45,7 +45,6 @@
 
 .Weather .current-extra {
   color: var(--primary-color);
-  margin-left: -20px;
   padding: 0;
 }
 
@@ -125,7 +124,6 @@
 
   .Weather .current-extra {
     margin-top: 15px;
-    margin-left: 0;
   }
 }
 
