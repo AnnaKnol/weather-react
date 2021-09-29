@@ -1,0 +1,64 @@
+.TempMaxAndMin .max-and-min {
+  font-size: 20px;
+  opacity: 0.45;
+  padding: 0;
+}
+
+.TempMaxAndMin .current-temperature {
+  color: var(--accent-color);
+  font-size: 120px;
+  line-height: 91px;
+  padding: 0;
+  text-align: center;
+}
+
+.TempMaxAndMin .temp-unit {
+  color: rgba(0, 0, 0, 0.45);
+  cursor: default;
+  font-size: 25px;
+}
+
+.TempMaxAndMin a {
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: none;
+}
+
+.TempMaxAndMin a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+
+.TempMaxAndMin a.true {
+  color: var(--accent-color);
+  cursor: default;
+  opacity: 1;
+  text-decoration: none;
+}
+
+@media (max-width: 575px) {
+  .TempMaxAndMin .current-temperature {
+    font-size: 100px;
+  }
+
+  .TempMaxAndMin .max-and-min {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 445px) {
+  .TempMaxAndMin .current-temperature {
+    font-size: 80px;
+  }
+
+  .TempMaxAndMin .temp-unit {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 387px) {
+  .TempMaxAndMin .current-temperature {
+    font-size: 60px;
+  }
+}

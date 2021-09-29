@@ -5,7 +5,6 @@ import Form from "./Form";
 import FormattedTime from "./FormattedTime";
 import CurrentState from "./CurrentState";
 import TempMaxAndMin from "./TempMaxAndMin.js";
-import MaxAndMin from "./MaxAndMin";
 import CurrentExtra from "./CurrentExtra";
 import Tomorrow from "./Tomorrow";
 import WeatherForecast from "./WeatherForecast";
@@ -129,9 +128,6 @@ export default function Weather(props) {
               showCelsius={showCelsius}
               showFahrenheit={showFahrenheit}
             />
-          </div>
-          <div className="col-12 col-sm-1 max-and-min">
-            <MaxAndMin data={weatherData} unit={unit} />
           </div>
           <div className="col-12 col-md-4 col-lg current-extra">
             <CurrentExtra data={weatherData} unit={unit} />

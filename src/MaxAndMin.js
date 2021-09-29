@@ -10,7 +10,7 @@ export default function MaxAndMin(props) {
       ? Math.round(props.data.maxTemperature)
       : Math.round((props.data.maxTemperature * 9) / 5 + 32);
   return (
-    <div className="MaxAndMin">
+    <div className="MaxAndMin max-and-min">
       <strong>{maxTemperature}°</strong>/{minTemperature}°
     </div>
   );

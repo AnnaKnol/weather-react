@@ -41,7 +41,6 @@
 
 .Weather .current {
   margin-right: -40px;
-  padding: 0;
 }
 
 .Weather .current-extra {
@@ -58,12 +57,6 @@
 .Weather .loader {
   margin: 30px auto;
   width: 100px;
-}
-
-.Weather .max-and-min {
-  font-size: 20px;
-  opacity: 0.45;
-  padding: 0;
 }
 
 .Weather .tomorrow {
@@ -111,39 +104,6 @@
   padding: 0;
 }
 
-.Weather .current-temperature {
-  color: var(--accent-color);
-  font-size: 120px;
-  line-height: 91px;
-  margin-right: 3px;
-  padding: 0;
-  text-align: center;
-}
-
-.Weather .temp-unit {
-  color: rgba(0, 0, 0, 0.45);
-  cursor: default;
-  font-size: 25px;
-}
-
-.Weather a {
-  color: rgba(0, 0, 0, 0.45);
-  text-decoration: none;
-}
-
-.Weather a:hover {
-  cursor: pointer;
-  text-decoration: underline;
-  color: var(--accent-color);
-}
-
-.Weather a.true {
-  color: var(--accent-color);
-  cursor: default;
-  opacity: 1;
-  text-decoration: none;
-}
-
 @media (max-width: 991px) {
   .Weather .tomorrow {
     border-left: none;
@@ -177,38 +137,17 @@
   .Weather #cur_loc_btn {
     width: 100%;
   }
-
-  .Weather .current-temperature {
-    font-size: 100px;
-  }
-
-  .Weather .max-and-min {
-    margin-top: 20px;
-    text-align: center;
-  }
 }
 
 @media (max-width: 445px) {
   .Weather h1 {
     font-size: 40px;
   }
-
-  .Weather .current-temperature {
-    font-size: 80px;
-  }
-
-  .Weather .temp-unit {
-    font-size: 20px;
-  }
 }
 
 @media (max-width: 387px) {
   .Weather h1 {
     font-size: 35px;
-  }
-
-  .Weather .current-temperature {
-    font-size: 60px;
   }
 
   .Weather .current {
