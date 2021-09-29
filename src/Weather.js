@@ -20,7 +20,6 @@ export default function Weather(props) {
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
   );
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [celsiusState, setCelsiusState] = useState(true);
 
   useEffect(
     function () {
@@ -84,18 +83,15 @@ export default function Weather(props) {
 
   function resetToCelsius() {
     setUnit("metric");
-    setCelsiusState(true);
   }
 
   function showCelsius(event) {
     event.preventDefault();
     setUnit("metric");
-    setCelsiusState(true);
   }
   function showFahrenheit(event) {
     event.preventDefault();
     setUnit("imperial");
-    setCelsiusState(false);
   }
 
   if (weatherData.ready) {
@@ -124,7 +120,6 @@ export default function Weather(props) {
             <TempMaxAndMin
               data={weatherData}
               unit={unit}
-              celsiusState={celsiusState}
               showCelsius={showCelsius}
               showFahrenheit={showFahrenheit}
             />

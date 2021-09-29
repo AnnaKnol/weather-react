@@ -4,6 +4,8 @@ import MaxAndMin from "./MaxAndMin";
 import "./TempMaxAndMin.css";
 
 export default function TempMaxAndMin(props) {
+  let unitStatus = props.unit === "metric" ? true : false;
+
   return (
     <div className="TempMaxAndMin row">
       <div className="current-temperature col-8 col-sm-6">
@@ -14,17 +16,13 @@ export default function TempMaxAndMin(props) {
       <div className="col-4 col-sm-5 text-center">
         <MaxAndMin data={props.data} unit={props.unit} />
         <div className="temp-unit">
-          <a
-            href="/"
-            className={`${props.celsiusState}`}
-            onClick={props.showCelsius}
-          >
+          <a href="/" className={`${unitStatus}`} onClick={props.showCelsius}>
             °C
           </a>{" "}
           |{" "}
           <a
             href="/"
-            className={`${!props.celsiusState}`}
+            className={`${!unitStatus}`}
             onClick={props.showFahrenheit}
           >
             °F
