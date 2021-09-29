@@ -4,6 +4,7 @@ import Loader from "react-loader-spinner";
 import Form from "./Form";
 import FormattedTime from "./FormattedTime";
 import CurrentState from "./CurrentState";
+import TempMaxAndMin from "./TempMaxAndMin.js";
 import MaxAndMin from "./MaxAndMin";
 import CurrentExtra from "./CurrentExtra";
 import Tomorrow from "./Tomorrow";
@@ -20,9 +21,7 @@ export default function Weather(props) {
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`
   );
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [precipitation, setPrecipitation] = useState("");
-  const [celsiusState, setCelsiusState] = useState("active");
-  const [fahrenheitState, setFahrenheitState] = useState("");
+  const [celsiusState, setCelsiusState] = useState(true);
 
   useEffect(
     function () {
@@ -86,21 +85,18 @@ export default function Weather(props) {
 
   function resetToCelsius() {
     setUnit("metric");
-    setCelsiusState("active");
-    setFahrenheitState("");
+    setCelsiusState(true);
   }
 
   function showCelsius(event) {
     event.preventDefault();
     setUnit("metric");
-    setCelsiusState("active");
-    setFahrenheitState("");
+    setCelsiusState(true);
   }
   function showFahrenheit(event) {
     event.preventDefault();
     setUnit("imperial");
-    setCelsiusState("");
-    setFahrenheitState("active");
+    setCelsiusState(false);
   }
 
   if (weatherData.ready) {
@@ -126,20 +122,13 @@ export default function Weather(props) {
             <CurrentState data={weatherData} />
           </div>
           <div className="col-8 col-sm-7 col-md-5 col-lg-4 current">
-            <span className="current-temperature">
-              {unit === "metric"
-                ? Math.round(weatherData.temperature)
-                : Math.round(weatherData.temperature * (9 / 5) + 32)}
-            </span>
-            <span className="temp-unit">
-              <a href="/" className={celsiusState} onClick={showCelsius}>
-                °C
-              </a>{" "}
-              |{" "}
-              <a href="/" className={fahrenheitState} onClick={showFahrenheit}>
-                °F
-              </a>
-            </span>
+            <TempMaxAndMin
+              data={weatherData}
+              unit={unit}
+              celsiusState={celsiusState}
+              showCelsius={showCelsius}
+              showFahrenheit={showFahrenheit}
+            />
           </div>
           <div className="col-12 col-sm-1 max-and-min">
             <MaxAndMin data={weatherData} unit={unit} />

@@ -137,7 +137,7 @@
   color: var(--accent-color);
 }
 
-.Weather a.active {
+.Weather a.true {
   color: var(--accent-color);
   cursor: default;
   opacity: 1;
