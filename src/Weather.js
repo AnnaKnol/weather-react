@@ -40,15 +40,8 @@ export default function Weather(props) {
           humidity: Math.round(response.data.main.humidity),
           feelingTemperature: response.data.main.feels_like,
           wind: response.data.wind.speed,
+          rain: response.data.rain,
         });
-
-        if (response.data.rain) {
-          setPrecipitation(
-            `Precipitation: ${Math.round(response.data.rain["1h"])} mm`
-          );
-        } else {
-          setPrecipitation("");
-        }
 
         setCity(response.data.name);
       }
@@ -130,10 +123,7 @@ export default function Weather(props) {
         <br />
         <div className="row">
           <div className="col-7 col-sm-7 col-md-5 col-lg current-state">
-            <CurrentState
-              icon={weatherData.icon}
-              description={weatherData.description}
-            />
+            <CurrentState data={weatherData} />
           </div>
           <div className="col-8 col-sm-7 col-md-5 col-lg-4 current">
             <span className="current-temperature">
@@ -152,34 +142,10 @@ export default function Weather(props) {
             </span>
           </div>
           <div className="col-12 col-sm-1 max-and-min">
-            <MaxAndMin
-              minTemperature={
-                unit === "metric"
-                  ? Math.round(weatherData.minTemperature)
-                  : Math.round((weatherData.minTemperature * 9) / 5 + 32)
-              }
-              maxTemperature={
-                unit === "metric"
-                  ? Math.round(weatherData.maxTemperature)
-                  : Math.round((weatherData.maxTemperature * 9) / 5 + 32)
-              }
-            />
+            <MaxAndMin data={weatherData} unit={unit} />
           </div>
           <div className="col-12 col-md-4 col-lg current-extra">
-            <CurrentExtra
-              humidity={weatherData.humidity}
-              feelingTemperature={
-                unit === "metric"
-                  ? Math.round(weatherData.feelingTemperature)
-                  : Math.round((weatherData.feelingTemperature * 9) / 5 + 32)
-              }
-              wind={
-                unit === "metric"
-                  ? `${Math.round(weatherData.wind * 3.6)} km/h`
-                  : `${Math.round(weatherData.wind)} mph`
-              }
-              precipitation={precipitation}
-            />
+            <CurrentExtra data={weatherData} unit={unit} />
           </div>
           <hr className="d-block d-lg-none" />
           <div className="col col-lg-2 tomorrow">
